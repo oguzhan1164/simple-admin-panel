@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Kitabı Güncelle</h2>
+<form method="POST">
+    <div class="mb-3">
+        <label for="bookName" class="form-label">Kitap Adı</label>
+        <input type="text" class="form-control" id="bookName" name="bookName" value="{{ book.bookName }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="category_id" class="form-label">Kategori</label>
+        <select class="form-select" id="category_id" name="category_id" required>
+            {% for c in categories %}
+            <option value="{{ c.id }}" {% if k.id == book.category_id %}selected{% endif %}>{{ c.categoryName }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="writer_id" class="form-label">Yazar</label>
+        <select class="form-select" id="writer_id" name="writer_id" required>
+            {% for w in writers %}
+            <option value="{{ w.id }}" {% if k.id == book.writer_id %}selected{% endif %}>{{ w.writerName }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Güncelle</button>
+    <a href="{{ url_for('index') }}" class="btn btn-secondary">İptal</a>
+</form>
+{% endblock %}

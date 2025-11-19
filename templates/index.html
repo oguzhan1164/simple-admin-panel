@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Kategoriler</h2>
+<ul class="list-group mb-4">
+    {% for c in categories %}
+        <li class="list-group-item d-flex justify-content-between">
+            {{ c.categoryName }}
+            <div>
+                <a href="{{ url_for('category_update', id=c.id) }}" class="btn btn-sm btn-warning">Güncelle</a>
+                <a href="{{ url_for('category_delete', id=c.id) }}" class="btn btn-sm btn-danger" onclick="return confirm('Silmek istediğinize emin misiniz?')">Sil</a>
+            </div>
+        </li>
+    {% else %}
+        <li class="list-group-item">Henüz kategori yok.</li>
+    {% endfor %}
+</ul>
+
+<h2>Yazarlar</h2>
+<ul class="list-group mb-4">
+    {% for w in writers %}
+        <li class="list-group-item d-flex justify-content-between">
+            {{ w.writerName }}
+            <div>
+                <a href="{{ url_for('writer_update', id=w.id) }}" class="btn btn-sm btn-warning">Güncelle</a>
+                <a href="{{ url_for('writer_delete', id=w.id) }}" class="btn btn-sm btn-danger" onclick="return confirm('Silmek istediğinize emin misiniz?')">Sil</a>
+            </div>
+        </li>
+    {% else %}
+        <li class="list-group-item">Henüz yazar yok.</li>
+    {% endfor %}
+</ul>
+
+<h2>Kitaplar</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Kitap Adı</th>
+            <th>Yazar</th>
+            <th>Kategori</th>
+            <th>İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for b in books %}
+        <tr>
+            <td>{{ b.bookName }}</td>
+            <td>{{ b.category.categoryName if b.category else 'Silinmiş Kategori' }}</td>
+            <td>{{ b.writer.writerName if b.writer else 'Silinmiş Yazar' }}</td>
+            <td>
+                <a href="{{ url_for('book_update', id=b.id) }}" class="btn btn-sm btn-warning">Güncelle</a>
+                <a href="{{ url_for('book_delete', id=b.id) }}" class="btn btn-sm btn-danger" onclick="return confirm('Silmek istediğinize emin misiniz?')">Sil</a>
+            </td>
+        </tr>
+        {% else %}
+        <tr><td colspan="4">Henüz kitap yok.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Yeni Yazar Ekle</h2>
+<form method="POST">
+    <div class="mb-3">
+        <label for="writerName" class="form-label">Yazar Adı</label>
+        <input type="text" class="form-control" id="writerName" name="writerName" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Ekle</button>
+    <a href="{{ url_for('index') }}" class="btn btn-secondary">İptal</a>
+</form>
+{% endblock %}
