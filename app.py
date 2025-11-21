@@ -76,7 +76,7 @@ def book_add():
         bookName = request.form['bookName'].strip()
         category_id = request.form.get('category_id')
         writer_id = request.form.get('writer_id')
-        if bookName  and category_id:
+        if bookName  and category_id and writer_id:
             newBook = Book(bookName=bookName, category_id=int(category_id),writer_id=int(writer_id))
             db.session.add(newBook)
             db.session.commit()
@@ -90,11 +90,12 @@ def book_add():
 def book_update(id):
     book = Book.query.get_or_404(id)
     categories = Category.query.all()
+    writers = Writer.query.all()
     if request.method == 'POST':
         bookName = request.form['bookName'].strip()
         writer_id = request.form.get('writer_id')
         category_id = request.form.get('category_id')
-        if bookName and category_id:
+        if bookName and category_id and writer_id:
             book.bookName = bookName
             book.writer_id = int(writer_id)
             book.category_id = int(category_id)
@@ -103,7 +104,7 @@ def book_update(id):
             return redirect(url_for('index'))
         else:
             flash('Tüm alanlar doldurulmalıdır!', 'warning')
-    return render_template('book_update.html', book=book, categories=categories)
+    return render_template('book_update.html', book=book, categories=categories,writers = writers)
 
 @app.route('/book/delete/<int:id>')
 def book_delete(id):

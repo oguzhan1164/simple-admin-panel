@@ -11,7 +11,7 @@
         <label for="category_id" class="form-label">Kategori</label>
         <select class="form-select" id="category_id" name="category_id" required>
             {% for c in categories %}
-            <option value="{{ c.id }}" {% if k.id == book.category_id %}selected{% endif %}>{{ c.categoryName }}</option>
+            <option value="{{ c.id }}" {% if c.id == book.category_id %}selected{% endif %}>{{ c.categoryName }}</option>
             {% endfor %}
         </select>
     </div>
@@ -19,7 +19,7 @@
         <label for="writer_id" class="form-label">Yazar</label>
         <select class="form-select" id="writer_id" name="writer_id" required>
             {% for w in writers %}
-            <option value="{{ w.id }}" {% if k.id == book.writer_id %}selected{% endif %}>{{ w.writerName }}</option>
+            <option value="{{ w.id }}" {% if w.id == book.writer_id %}selected{% endif %}>{{ w.writerName }}</option>
             {% endfor %}
         </select>
     </div>
