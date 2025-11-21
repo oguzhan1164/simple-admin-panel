@@ -1,0 +1,16 @@
+flask-kitap-kategori-yazar/
+│
+├── app.py                      # Admin Paneli uygulaması (Kitap Kategori ve Yazar için CRUD işlemleri ve İşlem sonlarında flask.flash ile bildirme)
+├── models.py                   # Modelleri ekler (Kitap  Kategori ve Yazar)
+├── requirements.txt            # Yüklenmiş kütüphaneler
+└── instance/
+│   └── adminpanel.db           # SQLite veritabanı (app.py çalışınca otomatik oluşturuluyor)
+└── templates/
+    ├── base.html
+    ├── index.html              # Sayfa tasarımları 
+    ├── category_add.html
+    ├── category_update.html
+    ├── book_add.html
+    ├── book_update.html
+    ├── writer_add.html
+    └── writer_update.html
